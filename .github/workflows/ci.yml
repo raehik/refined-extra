@@ -124,7 +124,7 @@ jobs:
           ${{ runner.os }}-latest-cabal-${{ matrix.ghc }}
 
     - name: Build
-      run: cabal install
+      run: cabal build
 
     - name: Test
       run: cabal test --test-show-details=streaming
@@ -167,7 +167,7 @@ jobs:
           ${{ runner.os }}-latest-cabal-${{ matrix.ghc }}
 
     - name: Build
-      run: cabal install
+      run: cabal build
 
     - name: Test
       run: cabal test --test-show-details=streaming

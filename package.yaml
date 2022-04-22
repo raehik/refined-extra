@@ -1,6 +1,6 @@
 name: refined-with
 version: 0.1.0
-synopsis: TODO
+synopsis: Refinement types with an "refinement applied" switch.
 description: Please see README.md.
 extra-source-files:
 - README.md
@@ -63,13 +63,12 @@ default-extensions:
 - MagicHash # pretty much syntactic, but too weird
 - ScopedTypeVariables # probs dangerous to have as default
 
-# TODO
 dependencies:
-- base
-- refined
-- deepseq
-- hashable
-- aeson # only OK because refined uses aeson
+- base >= 4.14 && < 5
+- refined ^>= 0.6.3
+- deepseq ^>= 1.4
+- hashable ^>= 1.4
+- aeson ^>= 2.0 # only OK because refined uses aeson
 
 library:
   source-dirs: src

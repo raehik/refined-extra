@@ -6,7 +6,7 @@ cabal-version: 1.12
 
 name:           refined-with
 version:        0.1.0
-synopsis:       TODO
+synopsis:       Refinement types with an "refinement applied" switch.
 description:    Please see README.md.
 category:       Data
 homepage:       https://github.com/raehik/refined-with#readme
@@ -66,9 +66,9 @@ library
       MagicHash
       ScopedTypeVariables
   build-depends:
-      aeson
-    , base
-    , deepseq
-    , hashable
-    , refined
+      aeson ==2.0.*
+    , base >=4.14 && <5
+    , deepseq ==1.4.*
+    , hashable ==1.4.*
+    , refined >=0.6.3 && <0.7
   default-language: Haskell2010

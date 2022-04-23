@@ -1,5 +1,5 @@
 name: refined-with
-version: 0.1.0
+version: 0.2.0
 synopsis: Refinement types with an "refinement applied" switch.
 description: Please see README.md.
 extra-source-files:

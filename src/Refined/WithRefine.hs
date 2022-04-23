@@ -89,7 +89,7 @@ import Control.Exception
 -- t'WithRefine'-wrapped fields into a single record and parameterize over the
 -- predicate status to essentially enable "weak" and "strong" views of the
 -- record, while conveniently using the same value-level representation.
-newtype WithRefine (ps :: PredicateStatus) p a
+newtype WithRefine (ps :: PredicateStatus) (p :: k) a
   = WithRefine {
       -- | Strips the predicate from a any wrapped value (enforced or not).
       withoutRefine :: a

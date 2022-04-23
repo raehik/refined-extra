@@ -1,3 +1,6 @@
+## 0.3.0 (2022-04-23)
+  * use more consistently useful type variable order across definitions
+
 ## 0.2.1 (2022-04-23)
   * add `unsafeWithRefine :: forall p ps a. a -> WithRefine ps p a`
 

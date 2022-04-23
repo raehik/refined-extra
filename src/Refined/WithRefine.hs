@@ -5,6 +5,9 @@ structure (i.e. the only difference is that whether some invariants are
 enforced). For information on refinement types and the underlying concept, see
 "Refined".
 
+Definitions generally order typevars predicate first and @a@ last, to support
+visible type application (@a@ is usually obvious to the compiler).
+
 Say you're already sold on refinement types as a method to easily describe data
 more precisely without complicating algorithms or comprising runtime
 performance. You work with plain types internally, and refine only when you need
@@ -116,7 +119,7 @@ type role WithRefine nominal nominal nominal
 
 -- | Wrap a value with any unenforced predicate. This is like tagging your value
 --   with the note "this value needs to be checked using the given predicate".
-withRefine :: a -> WithRefine 'Unenforced p a
+withRefine :: forall p a. a -> WithRefine 'Unenforced p a
 withRefine = WithRefine
 
 -- | Is the associated predicate currently enforced or not?
@@ -142,7 +145,7 @@ enforce wrua =
 -- | Enforce a wrapped value's predicate at runtime, calling 'fail' if the value
 --   does not satisfy the predicate.
 enforceFail
-    :: (Predicate p a, MonadFail m)
+    :: forall p m a. (Predicate p a, MonadFail m)
     => WithRefine 'Unenforced p a
     -> m (WithRefine 'Enforced p a)
 enforceFail wrua = case enforce wrua of
@@ -150,26 +153,23 @@ enforceFail wrua = case enforce wrua of
                     Right wrea -> pure wrea
 
 -- | Stop enforcing a wrapped value's predicate.
-unenforce :: WithRefine 'Enforced p a -> WithRefine 'Unenforced p a
+unenforce :: forall p a. WithRefine 'Enforced p a -> WithRefine 'Unenforced p a
 unenforce = withRefine . withoutRefine
 
 -- | If you have a @t'WithRefine' ''Enforced'@ value, you can obtain a matching
 --   'Refined'.
-enforcedToRefined :: WithRefine 'Enforced p a -> Refined p a
+enforcedToRefined :: forall p a. WithRefine 'Enforced p a -> Refined p a
 enforcedToRefined = reallyUnsafeRefine . withoutRefine
 
 -- | If you have a 'Refined' value, you can obtain a matching @t'WithRefine'
 --   ''Enforced'@.
-refinedToEnforced :: Refined p a -> WithRefine 'Enforced p a
+refinedToEnforced :: forall p a. Refined p a -> WithRefine 'Enforced p a
 refinedToEnforced = reallyUnsafeEnforce . unrefine
 
 -- | Construct an enforced type, completely ignoring any refinements!
 --
 -- You should only use this if you can prove that the refinement holds. (We need
 -- it internally to coerce between 'Refined'.)
---
--- The typevars are ordered to ease usage of visible type application, since @a@
--- is usually obvious to the compiler.
 reallyUnsafeEnforce :: forall p a. a -> WithRefine 'Enforced p a
 reallyUnsafeEnforce = WithRefine
 
@@ -179,7 +179,7 @@ reallyUnsafeEnforce = WithRefine
 --
 -- You should only use this if you can prove that the refinement holds for all
 -- values of @a@.
-unsafeWithRefine :: forall p ps a. a -> WithRefine ps p a
+unsafeWithRefine :: forall ps p a. a -> WithRefine ps p a
 unsafeWithRefine = WithRefine
 
 -- | Not very useful, but clarifies the meaning of enforced and unenforced

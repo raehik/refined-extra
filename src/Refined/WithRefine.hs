@@ -61,6 +61,9 @@ module Refined.WithRefine
   -- * Unsafe enforcing
   , reallyUnsafeEnforce
 
+  -- * Unsafe creation
+  , unsafeWithRefine
+
   -- * Other definitions
   , WithRefineRep
   ) where
@@ -106,9 +109,9 @@ instance FromJSON a => FromJSON (WithRefine 'Unenforced p a) where
 instance (FromJSON a, Predicate p a) => FromJSON (WithRefine 'Enforced p a) where
     parseJSON a = parseJSON a >>= enforceFail
 
--- | I don't really understand this. I naively use the same role annotation as
---   'Refined'. GHC user's guide page:
---   https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/roles.html
+-- TODO I don't really understand this. I naively use the same role annotation
+-- as 'Refined'. GHC user's guide page:
+-- https://ghc.gitlab.haskell.org/ghc/doc/users_guide/exts/roles.html
 type role WithRefine nominal nominal nominal
 
 -- | Wrap a value with any unenforced predicate. This is like tagging your value
@@ -169,6 +172,15 @@ refinedToEnforced = reallyUnsafeEnforce . unrefine
 -- is usually obvious to the compiler.
 reallyUnsafeEnforce :: forall p a. a -> WithRefine 'Enforced p a
 reallyUnsafeEnforce = WithRefine
+
+-- | Wrap a value with any predicate, enforced or unenforced. This is useful for
+--   "no-op" refinements, potentially letting you to merge two instances into
+--   one, where you explicitly ignore the 'PredicateStatus' (perhaps clearer).
+--
+-- You should only use this if you can prove that the refinement holds for all
+-- values of @a@.
+unsafeWithRefine :: forall p ps a. a -> WithRefine ps p a
+unsafeWithRefine = WithRefine
 
 -- | Not very useful, but clarifies the meaning of enforced and unenforced
 --   refinements.

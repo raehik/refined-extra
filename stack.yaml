@@ -1,2 +1,6 @@
 resolver: nightly-2022-03-30
 packages: [.]
+
+extra-deps:
+- git: https://github.com/raehik/refined
+  commit: 6d8abc5669ac623ca0258d10f998c25cfbac4bf6

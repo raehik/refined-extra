@@ -1,6 +1,6 @@
-name: refined-with
+name: refined-extra
 version: 0.3.0
-synopsis: Refinement types with an "refinement applied" switch.
+synopsis: Extension definitions for the refined library.
 description: Please see README.md.
 extra-source-files:
 - README.md

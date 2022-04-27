@@ -3,4 +3,4 @@ packages: [.]
 
 extra-deps:
 - git: https://github.com/raehik/refined
-  commit: 6d8abc5669ac623ca0258d10f998c25cfbac4bf6
+  commit: b283c73689b6ca937d8795582c8b232f4cb8ba70

@@ -4,9 +4,9 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           refined-with
+name:           refined-extra
 version:        0.3.0
-synopsis:       Refinement types with an "refinement applied" switch.
+synopsis:       Extension definitions for the refined library.
 description:    Please see README.md.
 category:       Data
 homepage:       https://github.com/raehik/refined-with#readme
@@ -28,9 +28,13 @@ source-repository head
 
 library
   exposed-modules:
-      Refined.WithRefine
+      Refined.Class
+      Refined.Class.Refine
+      Refined.Class.Unrefine
+      Refined.Example
+      Refined.Extra
   other-modules:
-      Paths_refined_with
+      Paths_refined_extra
   hs-source-dirs:
       src
   default-extensions:

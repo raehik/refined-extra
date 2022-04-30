@@ -10,7 +10,7 @@ tested-with: GHC ==8.10.7 || ==9.2.2
 license: MIT
 license-file: LICENSE
 
-github: raehik/refined-with
+github: raehik/refined-extra
 maintainer: Ben Orchard <thefirstmuffinman@gmail.com>
 author: Ben Orchard
 

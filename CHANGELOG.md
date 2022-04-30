@@ -1,5 +1,8 @@
-## Unreleased
-  * make `WithRefined` predicate type `p` kind polymorphic (`p :: Type` -> `p :: k`)
+## 0.4.0 (Unreleased)
+  * rewrite as refined-extra
+  * working (if wonky) classy interface
+  * `WithRefine` etc. provided by a fork with various small patches
+    * TODO: this prevents us from releasing to Hackage :(
 
 ## 0.3.0 (2022-04-23)
   * use more consistently useful type variable order across definitions

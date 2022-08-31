@@ -1,4 +1,7 @@
 # refined-extra
+*This project is deprecated. The core idea is redesigned and implemented in my
+[strongweak](https://hackage.haskell.org/package/strongweak) package.*
+
 Extra definitions for Nikita Volkov's
 [refined](https://hackage.haskell.org/package/refined) library.
 
